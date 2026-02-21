@@ -11,7 +11,16 @@
             <ColumnDefinition Width="37*"/>
             <ColumnDefinition Width="163*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Content="Bughfhtton" HorizontalAlignment="Left" Margin="197,151,0,0" VerticalAlignment="Top" Height="73" Width="149"/>
 
+        <Canvas Name ="view_sidebar"  Grid.Column="0" Background="LightGray">
+            <StackPanel VerticalAlignment="Top" Margin="10">
+                <Button Name="btn_Customer" Content="Kunden" Margin="0,5"/>
+                <Button Name ="btn_Service" Content="Dienstleistungskatalog" Margin="0,5"/>
+                <Button Name ="btn_Offer" Content="Angebote" Margin="0,5"/>
+                <Button Name ="btn_Invoice" Content="Rechnungen" Margin="0,5"/>
+            </StackPanel>
+        </Canvas>
+        <Canvas Name="view_MainView" Grid.Column="1" HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="652"/>
+        
     </Grid>
 </Window>
