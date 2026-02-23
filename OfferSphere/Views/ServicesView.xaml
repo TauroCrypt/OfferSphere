@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <TextBlock Text="Services View" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+        <Frame Name="ServiceFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>
