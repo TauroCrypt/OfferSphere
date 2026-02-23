@@ -3,11 +3,104 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OfferSphere.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Customers View" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
-        <Frame Name="CustomerFrame" NavigationUIVisibility="Hidden"/>
+
+    <!-- Only Contentarea -->
+    <Grid Background="#F5F6FA" Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Margin="0,0,0,15">
+            <TextBlock Text="Customers"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#2F3640"
+                       DockPanel.Dock="Left"/>
+
+            <!-- Add Button -->
+            <Button Content="+ Customer"
+                    Width="120"
+                    Height="35"
+                    HorizontalAlignment="Right"
+                    Background="#4078F2"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"
+                    Padding="10,5"/>
+        </DockPanel>
+
+        <!-- List -->
+        <Border Grid.Row="1"
+                Background="White"
+                CornerRadius="12"
+                Padding="10">
+
+            <ListBox ItemsSource="{Binding Customers}"
+                     SelectedItem="{Binding SelectedCustomer}"
+                     BorderThickness="0"
+                     Background="Transparent">
+
+                <!-- Scrollbar -->
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="14"
+                                CornerRadius="10"
+                                Background="#F8F9FC">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Avatar -->
+                                <Ellipse Width="42"
+                                         Height="42"
+                                         Fill="#4078F2"
+                                         VerticalAlignment="Center"/>
+
+                                <!-- Name -->
+                                <StackPanel Grid.Column="1" Margin="10,0">
+                                    <TextBlock Text="{Binding CompanyName}"
+                                               FontWeight="Bold"
+                                               FontSize="15"/>
+                                    <TextBlock Text="{Binding Street}"
+                                               Foreground="#6B7280"
+                                               FontSize="12"/>
+                                    <TextBlock Text="{Binding PostalCode}"
+                                               Foreground="#6B7280"
+                                               FontSize="12"/>
+                                </StackPanel>
+
+                                <!-- City -->
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding City}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                           FontWeight="SemiBold"
+                                           Foreground="#374151"/>
+                                
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+        </Border>
+
     </Grid>
 </UserControl>
