@@ -24,10 +24,9 @@ namespace OfferSphere
             // Perform database operations here
         }
 
-        private void btn_Customer_Click(object sender, RoutedEventArgs e)
+        private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            CustomerRepositoy cr_customer = new CustomerRepositoy();
-            cr_customer.GetCustomerFromID(7);
+            //MainFrame.Navigate(new Uri("Views\\CustomersView.xaml", UriKind.Relative));
         }
     }
 }

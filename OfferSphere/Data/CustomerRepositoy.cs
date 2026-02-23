@@ -9,16 +9,36 @@ namespace OfferSphere.Data
 {
     internal class CustomerRepositoy
     {
+        DBConnection dbConnection = new DBConnection();
+        OleDbCommand cmd;
+        OleDbDataReader reader;
         public CustomerRepositoy() { }
+
+        public List<string> GetAllCustomers()
+        {
+            dbConnection.Open();
+            OleDbConnection conn = dbConnection.Connection;
+            List<string> results = new List<string>();
+
+            string sql = "SELECT companyName FROM customers";
+
+            cmd = new OleDbCommand(sql, conn);
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                results.Add(reader.GetString(0));
+            }
+
+            dbConnection.Close();
+
+            return results;
+        }
 
         public void GetCustomerFromID(int id)
         {
-            DBConnection dbConnection = new DBConnection();
-            OleDbConnection conn = dbConnection.Connection;
-            OleDbCommand cmd;
-            OleDbDataReader reader;
-
             dbConnection.Open();
+            OleDbConnection conn = dbConnection.Connection;
 
             string sql = "SELECT companyName FROM customers WHERE customerID = ?";
             
