@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using OfferSphere.Data;
+using System.Data.OleDb;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +21,13 @@ namespace OfferSphere
         public MainWindow()
         {
             InitializeComponent();
+            // Perform database operations here
+        }
+
+        private void btn_Customer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerRepositoy cr_customer = new CustomerRepositoy();
+            cr_customer.GetCustomerFromID(7);
         }
     }
 }

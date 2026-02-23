@@ -1,10 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
+using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace OfferSphere.Data
 {
-    internal class DBConnection
+    public class DBConnection
     {
+        private string ConnectionString { get; set; }
+        public OleDbConnection Connection { get; private set; }
+
+        public DBConnection()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            
+            DirectoryInfo dir = new DirectoryInfo(AppContext.BaseDirectory);
+            while (dir != null && !dir.Name.Equals("bin", StringComparison.OrdinalIgnoreCase))
+            {
+                dir = dir.Parent;
+            }
+
+            string projectDir = (dir?.Parent != null) ? dir.Parent.FullName : AppContext.BaseDirectory;
+            string dbPath = Path.Combine(projectDir, @"Database\OfferSphereDB.accdb");
+
+            ConnectionString = $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbPath}";
+            Connection = new OleDbConnection(ConnectionString);
+        }
+        public void Open()
+        {
+            Connection.Open();
+            //MessageBox.Show(ConnectionString, "Database Connection String", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        public void Close()
+        {
+            Connection.Close();
+            //MessageBox.Show("Database connection closed.", "Database Connection", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        // Additional methods for executing queries, transactions, etc. can be added here
     }
 }
