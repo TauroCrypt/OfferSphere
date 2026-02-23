@@ -73,27 +73,27 @@
                                          Fill="#4078F2"
                                          VerticalAlignment="Center"/>
 
-                                <!-- Name -->
+                                <!-- Data -->
                                 <StackPanel Grid.Column="1" Margin="10,0">
                                     <TextBlock Text="{Binding CompanyName}"
                                                FontWeight="Bold"
                                                FontSize="15"/>
+
                                     <TextBlock Text="{Binding Street}"
                                                Foreground="#6B7280"
                                                FontSize="12"/>
-                                    <TextBlock Text="{Binding PostalCode}"
-                                               Foreground="#6B7280"
-                                               FontSize="12"/>
+
+                                    <!-- PLZ und Ort in einer Zeile -->
+                                    <TextBlock Foreground="#6B7280" FontSize="12">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="PostalCode" />
+                                                <Binding Path="City" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
                                 </StackPanel>
 
-                                <!-- City -->
-                                <TextBlock Grid.Column="2"
-                                           Text="{Binding City}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Right"
-                                           FontWeight="SemiBold"
-                                           Foreground="#374151"/>
-                                
                             </Grid>
                         </Border>
                     </DataTemplate>

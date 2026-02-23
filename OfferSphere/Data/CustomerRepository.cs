@@ -22,9 +22,9 @@ namespace OfferSphere.Data
             OleDbConnection conn = dbConnection.Connection;
             List<Customer> customers = new List<Customer>();
 
-            string sql = "SELECT * FROM customers";
+            string query = "SELECT * FROM customers";
 
-            cmd = new OleDbCommand(sql, conn);
+            cmd = new OleDbCommand(query, conn);
             reader = cmd.ExecuteReader();
 
             while (reader.Read())
