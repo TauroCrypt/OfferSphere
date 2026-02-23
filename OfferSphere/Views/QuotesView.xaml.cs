@@ -18,9 +18,13 @@ namespace OfferSphere.Views
     /// </summary>
     public partial class QuotesView : UserControl
     {
+        private QuoteViewModel _viewModel;
         public QuotesView()
         {
             InitializeComponent();
+
+            _viewModel = new QuoteViewModel();
+            DataContext = _viewModel;
         }
     }
 }

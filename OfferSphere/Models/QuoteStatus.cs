@@ -4,7 +4,15 @@ using System.Text;
 
 namespace OfferSphere.Models
 {
-    internal class QuoteStatus
+    public class QuoteStatus
     {
+        public int StatusCode { get; set; }
+        public string Label { get; set; }
+
+        public QuoteStatus(int statusCode, string label)
+        {
+            StatusCode = statusCode;
+            Label = label;
+        }
     }
 }

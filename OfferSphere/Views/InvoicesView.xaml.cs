@@ -18,9 +18,13 @@ namespace OfferSphere.Views
     /// </summary>
     public partial class InvoicesView : UserControl
     {
+        private InvoiceViewModel _viewModel;
         public InvoicesView()
         {
             InitializeComponent();
+
+            _viewModel = new InvoiceViewModel();
+            DataContext = _viewModel;
         }
     }
 }

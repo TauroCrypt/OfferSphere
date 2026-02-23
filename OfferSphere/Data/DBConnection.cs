@@ -31,14 +31,10 @@ namespace OfferSphere.Data
         public void Open()
         {
             Connection.Open();
-            //MessageBox.Show(ConnectionString, "Database Connection String", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public void Close()
         {
             Connection.Close();
-            //MessageBox.Show("Database connection closed.", "Database Connection", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-        // Additional methods for executing queries, transactions, etc. can be added here
     }
 }

@@ -19,7 +19,7 @@
             <StackPanel x:Name="SidebarMenu">
                 <Button Content="Kunden" Tag="btn_MenuCustomers" 
                     Style="{StaticResource MenuButtonStyle}" Click="Menu_Click"/>
-                <Button Content="Katalog" Tag="btn_MenuService" 
+                <Button Content="Leistungskatalog" Tag="btn_MenuService" 
                     Style="{StaticResource MenuButtonStyle}" Click="Menu_Click"/>
                 <Button Content="Angebote" Tag="btn_MenuQuote" 
                     Style="{StaticResource MenuButtonStyle}" Click="Menu_Click"/>

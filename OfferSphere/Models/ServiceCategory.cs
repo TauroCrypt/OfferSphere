@@ -4,7 +4,15 @@ using System.Text;
 
 namespace OfferSphere.Models
 {
-    internal class ServiceCategory
+    public class ServiceCategory
     {
+        public int CategoryCode { get; private set; }
+        public string Label { get; private set; }
+
+        public ServiceCategory(int categoryCode, string label)
+        {
+            CategoryCode = categoryCode;
+            Label = label;
+        }
     }
 }
