@@ -23,7 +23,8 @@
                        DockPanel.Dock="Left"/>
 
             <!-- Add Button -->
-            <Button Content="+ Customer"
+            <Button Content="Add Customer"
+                    Command="{Binding AddCustomerCommand}"
                     Width="120"
                     Height="35"
                     HorizontalAlignment="Right"
@@ -83,7 +84,6 @@
                                                Foreground="#6B7280"
                                                FontSize="12"/>
 
-                                    <!-- PLZ und Ort in einer Zeile -->
                                     <TextBlock Foreground="#6B7280" FontSize="12">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0} {1}">
@@ -101,6 +101,8 @@
 
             </ListBox>
         </Border>
-
+        
+        <Frame x:Name="CustomerFrame" Grid.Column="1" 
+            NavigationUIVisibility="Hidden" />
     </Grid>
 </UserControl>

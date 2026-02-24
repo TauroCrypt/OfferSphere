@@ -9,7 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\gear_1160356.png" />
+    <None Remove="Resources\info_471662.png" />
+    <None Remove="Resources\LogoOfferSphere.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.OleDb" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\gear_1160356.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\info_471662.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\LogoOfferSphere.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
