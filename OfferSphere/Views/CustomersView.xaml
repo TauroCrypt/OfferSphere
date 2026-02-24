@@ -4,25 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
 
-    <!-- Only Contentarea -->
     <Grid Background="#F5F6FA" Margin="20">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="Auto"/>
+            <!-- Search -->
             <RowDefinition Height="*"/>
+            <!-- Customer List -->
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <DockPanel Margin="0,0,0,15">
+        <DockPanel Margin="0,0,0,10">
             <TextBlock Text="Customers"
                        FontSize="28"
                        FontWeight="Bold"
                        Foreground="#2F3640"
                        DockPanel.Dock="Left"/>
-
-            <!-- Add Button -->
             <Button Content="Add Customer"
                     Command="{Binding AddCustomerCommand}"
                     Width="120"
@@ -32,21 +33,28 @@
                     Foreground="White"
                     BorderThickness="0"
                     FontWeight="SemiBold"
-                    Padding="10,5"/>
+                    Padding="5"/>
         </DockPanel>
 
-        <!-- List -->
-        <Border Grid.Row="1"
+        <!-- Search Field -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
+            <TextBlock Text="Search:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox Width="250"
+                     Height="30"
+                     FontSize="14"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <!-- Customer List -->
+        <Border Grid.Row="2"
                 Background="White"
                 CornerRadius="12"
                 Padding="10">
-
             <ListBox ItemsSource="{Binding Customers}"
                      SelectedItem="{Binding SelectedCustomer}"
                      BorderThickness="0"
                      Background="Transparent">
 
-                <!-- Scrollbar -->
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Margin" Value="5"/>
@@ -57,41 +65,45 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Padding="14"
+                        <Border Padding="12"
                                 CornerRadius="10"
                                 Background="#F8F9FC">
-
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="180"/>
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Avatar -->
-                                <Ellipse Width="42"
-                                         Height="42"
-                                         Fill="#4078F2"
-                                         VerticalAlignment="Center"/>
+                                <Ellipse Width="42" Height="42" Fill="#4078F2" VerticalAlignment="Center"/>
 
-                                <!-- Data -->
+                                <!-- Customer Info -->
                                 <StackPanel Grid.Column="1" Margin="10,0">
-                                    <TextBlock Text="{Binding CompanyName}"
-                                               FontWeight="Bold"
-                                               FontSize="15"/>
-
-                                    <TextBlock Text="{Binding Street}"
-                                               Foreground="#6B7280"
-                                               FontSize="12"/>
-
+                                    <TextBlock Text="{Binding CompanyName}" FontWeight="Bold" FontSize="15"/>
+                                    <TextBlock Text="{Binding Street}" Foreground="#6B7280" FontSize="12"/>
                                     <TextBlock Foreground="#6B7280" FontSize="12">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0} {1}">
-                                                <Binding Path="PostalCode" />
-                                                <Binding Path="City" />
+                                                <Binding Path="PostalCode"/>
+                                                <Binding Path="City"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
+                                </StackPanel>
+
+                                <!-- Action Buttons -->
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0">
+                                    <Button Command="{Binding DataContext.EditCustomerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" Width="30" Height="30" Background="#FBBF24" BorderThickness="0" Margin="0,0,5,0">
+                                        <Image Source="/OfferSphere;component/Resources/edit_icon.png" Stretch="Uniform"/>
+                                    </Button>
+
+                                    <Button Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" Width="30" Height="30" Background="#EF4444" BorderThickness="0" Margin="0,0,5,0">
+                                        <Image Source="/OfferSphere;component/Resources/delete_icon.png" Stretch="Uniform"/>
+                                    </Button>
+                                    
                                 </StackPanel>
 
                             </Grid>
@@ -101,8 +113,6 @@
 
             </ListBox>
         </Border>
-        
-        <Frame x:Name="CustomerFrame" Grid.Column="1" 
-            NavigationUIVisibility="Hidden" />
+
     </Grid>
 </UserControl>
