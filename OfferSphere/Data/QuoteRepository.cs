@@ -51,7 +51,7 @@ namespace OfferSphere.Data
             dbConnection.Open();
             OleDbConnection conn = dbConnection.Connection;
             List<QuoteStatus> statuses = new List<QuoteStatus>();
-            string query = "SELECT statusCode, label FROM quoteStatus;";
+            string query = "SELECT * FROM quoteStatus;";
             cmd = new OleDbCommand(query, conn);
             reader = cmd.ExecuteReader();
             while (reader.Read())

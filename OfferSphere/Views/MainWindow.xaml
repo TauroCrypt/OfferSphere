@@ -42,12 +42,14 @@
                 <!-- Right-side buttons -->
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="">
                     <!-- Help Button -->
-                    <Button Name="btn_help" Width="30" Height="30" Background="#374151" BorderThickness="0" Cursor="Hand" Margin="0,0,5,0">
+                    <Button Name="btn_help" Width="30" Height="30" Background="#374151" BorderThickness="0" Cursor="Hand" Margin="0,0,5,0"
+                        Command="{Binding OpenHelpCommand}">
                         <Image Source="/OfferSphere;component/Resources/info_471662.png" />
                     </Button>
 
                     <!-- Settings Button -->
-                    <Button Name="btn_setting" Width="30" Height="30" Background="#374151" BorderThickness="0" Cursor="Hand">
+                    <Button Name="btn_setting" Width="30" Height="30" Background="#374151" BorderThickness="0" Cursor="Hand"
+                            Command="{Binding OpenSettingsCommand}">
                         <Image Source="/OfferSphere;component/Resources/gear_1160356.png" />
                     </Button>
                 </StackPanel>
@@ -60,16 +62,16 @@
             <StackPanel x:Name="SidebarMenu">
                 <Button Content="Kunden"
                         Style="{StaticResource MenuButtonStyle}"
-                        Command="{Binding ShowCustomersCommand}"/>
+                        Command="{Binding Navigation.ShowCustomersCommand}"/>
                 <Button Content="Leistungskatalog"
                         Style="{StaticResource MenuButtonStyle}"
-                        Command="{Binding ShowServicesCommand}"/>
+                        Command="{Binding Navigation.ShowServicesCommand}"/>
                 <Button Content="Angebote"
                         Style="{StaticResource MenuButtonStyle}"
-                        Command="{Binding ShowQuotesCommand}"/>
+                        Command="{Binding Navigation.ShowQuotesCommand}"/>
                 <Button Content="Rechnungen"
                         Style="{StaticResource MenuButtonStyle}"
-                        Command="{Binding ShowInvoicesCommand}"/>
+                        Command="{Binding Navigation.ShowInvoicesCommand}"/>
             </StackPanel>
         </Border>
 

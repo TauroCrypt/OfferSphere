@@ -143,6 +143,7 @@
                                     <!-- Open -->
                                     <Button Command="{Binding DataContext.OpenQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"
+                                            Background= "WhiteSmoke"
                                             Width="32" Height="32"
                                             Margin="4,0">
                                         <Image Source="/OfferSphere;component/Resources/open.png"/>
@@ -151,6 +152,7 @@
                                     <!-- Send -->
                                     <Button Command="{Binding DataContext.SendQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"
+                                            Background="LightGreen"
                                             Width="32" Height="32"
                                             Margin="4,0">
                                         <Image Source="/OfferSphere;component/Resources/send.png"/>
@@ -159,6 +161,7 @@
                                     <!-- Edit -->
                                     <Button Command="{Binding DataContext.EditQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"
+                                            Background="Khaki"
                                             Width="32" Height="32"
                                             Margin="4,0">
                                         <Image Source="/OfferSphere;component/Resources/edit_icon.png"/>
@@ -167,6 +170,7 @@
                                     <!-- Delete -->
                                     <Button Command="{Binding DataContext.DeleteQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"
+                                            Background="IndianRed"
                                             Width="32" Height="32"
                                             Margin="4,0">
                                         <Image Source="/OfferSphere;component/Resources/delete_icon.png"/>

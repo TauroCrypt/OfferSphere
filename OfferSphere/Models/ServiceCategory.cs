@@ -6,8 +6,8 @@ namespace OfferSphere.Models
 {
     public class ServiceCategory
     {
-        public int CategoryCode { get; private set; }
-        public string Label { get; private set; }
+        public int CategoryCode { get; set; }
+        public string Label { get; set; }
 
         public ServiceCategory() { }
         public ServiceCategory(int categoryCode, string label)

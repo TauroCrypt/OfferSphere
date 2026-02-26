@@ -19,15 +19,15 @@ namespace OfferSphere
     /// </summary>
     public partial class MainWindow : Window
     {
-        private NavigationViewModel _viewModel;
+        private MainViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
 
             var navigationService = new NavigationService(MainFrame);
-            _viewModel = new NavigationViewModel(navigationService);
-
+            _viewModel = new MainViewModel(navigationService);
+            
             DataContext = _viewModel;
         }
     }

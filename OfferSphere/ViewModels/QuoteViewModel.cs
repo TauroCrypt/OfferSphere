@@ -4,6 +4,7 @@ using OfferSphere.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OfferSphere.Views
@@ -33,29 +34,29 @@ namespace OfferSphere.Views
             Quotes = _repository.GetAllQuotes();
         }
 
-        public void OpenQuote()
+        private void OpenQuote()
         {
-
+            MessageBox.Show("Open Quote functionality is not implemented yet.");
         }
 
-        public void CreateQuote()
+        private void CreateQuote()
         {
-
+            MessageBox.Show("Create Quote functionality is not implemented yet.");
         }
 
-        public void EditQuote()
+        private void EditQuote()
         {
-
+            MessageBox.Show("Edit Quote functionality is not implemented yet.");
         }
 
-        public void DeleteQuote()
+        private void DeleteQuote()
         {
-
+            MessageBox.Show("Delete Quote functionality is not implemented yet.");
         }
 
-        public void SendQuote()
+        private void SendQuote()
         {
-
+            MessageBox.Show("Send Quote functionality is not implemented yet.");
         }
     }
 }

@@ -11,12 +11,10 @@ namespace OfferSphere.Views
     public class NavigationViewModel
     {
         private readonly NavigationService _navigationService;
-
         public ICommand ShowCustomersCommand { get; }
         public ICommand ShowServicesCommand { get; }
         public ICommand ShowQuotesCommand { get; }
         public ICommand ShowInvoicesCommand { get; }
-
 
         public NavigationViewModel(NavigationService navigationService)
         {

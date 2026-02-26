@@ -3,11 +3,166 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OfferSphere.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Services View" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
-        <Frame Name="ServiceFrame" NavigationUIVisibility="Hidden"/>
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid Background="#F5F6FA" Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <DockPanel Margin="0,0,0,15">
+            <TextBlock Text="Services"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#2F3640"
+                       DockPanel.Dock="Left"/>
+
+            <Button Content="New Service"
+                    Command="{Binding CreateServiceCommand}"
+                    Width="150"
+                    Height="36"
+                    Background="#4078F2"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Right"/>
+        </DockPanel>
+
+        <!-- SEARCH -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <TextBlock Text="Search service"
+                           FontSize="12"
+                           Foreground="Gray"/>
+                <TextBox Height="30"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- Status Filter -->
+            <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                <TextBlock Text="Status"
+                           FontSize="12"
+                           Foreground="Gray"/>
+                <ComboBox Height="30"
+                          ItemsSource="{Binding ServiceCategoryFilter}"
+                          SelectedItem="{Binding SelectedCategory}"
+                          DisplayMemberPath="Label"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- SERVICE LIST -->
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="12"
+                Padding="10">
+
+            <ListBox ItemsSource="{Binding Services}"
+                     SelectedItem="{Binding SelectedService}"
+                     BorderThickness="0"
+                     Background="Transparent">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border Background="#F8F9FC"
+                                Padding="14"
+                                CornerRadius="10">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="180"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- SERVICE NAME -->
+                                <StackPanel>
+                                    <TextBlock Text="{Binding ServiceName}"
+                                               FontSize="15"
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="12"
+                                               Foreground="#6B7280"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                                
+                                <!-- CATEGORY -->
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Category"
+                                               FontSize="11"
+                                               Foreground="Gray"/>
+                                    <TextBlock Text="{Binding CategoryLabel}"
+                                               FontSize="15"/>
+                                </StackPanel>
+
+                                <!-- PRICE -->
+                                <StackPanel Grid.Column="2"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Price"
+                                               FontSize="11"
+                                               Foreground="Gray"/>
+                                    <TextBlock Text="{Binding CurrentPrice, StringFormat={}{0:C}}"
+                                               FontSize="15"
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <!-- ACTIONS -->
+                                <StackPanel Grid.Column="3"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center">
+
+                                    <!-- Edit -->
+                                    <Button Command="{Binding DataContext.EditServiceCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32"
+                                            Height="32"
+                                            Margin="4">
+                                        <Image Source="/OfferSphere;component/Resources/edit_icon.png"/>
+                                    </Button>
+
+                                    <!-- Delete -->
+                                    <Button Command="{Binding DataContext.DeleteServiceCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32"
+                                            Height="32"
+                                            Margin="4">
+                                        <Image Source="/OfferSphere;component/Resources/delete_icon.png"/>
+                                    </Button>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+        </Border>
+
+        <Frame Name="ServiceFrame"
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>
