@@ -10,6 +10,7 @@ namespace OfferSphere.Models
         public string Label { get; private set; }
         public int NetDays { get; private set; }
 
+        public PaymentTerm() { }
         public PaymentTerm(int termCode, string label, int netDays)
         {
             TermCode = termCode;

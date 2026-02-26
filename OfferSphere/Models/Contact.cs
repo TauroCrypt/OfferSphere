@@ -13,6 +13,7 @@ namespace OfferSphere.Models
         public string Email { get; private set; }
         public string PhoneNumber { get; private set; }
 
+        public Contact() { }
         public Contact(int contactID, int customerID, string firstName, string lastName, string email, string phoneNumber)
         {
             ContactID = contactID;

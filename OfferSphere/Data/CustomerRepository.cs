@@ -44,18 +44,18 @@ namespace OfferSphere.Data
             return customers;
         }
 
-        public Customer GetCustomerFromID(int id)
+        public Customer GetCustomerById(int id)
         {
-            if(id > 0)
+            if(id < 0)
                 throw new ArgumentException("ID must be greater than 0.");
 
             dbConnection.Open();
             OleDbConnection conn = dbConnection.Connection;
             Customer customer = null;
 
-            string sql = "SELECT * FROM customers WHERE customerID = ?";
+            string query = "SELECT * FROM customers WHERE customerID = ?";
             
-            cmd = new OleDbCommand(sql, conn);
+            cmd = new OleDbCommand(query, conn);
             cmd.Parameters.AddWithValue("?", id);
             reader = cmd.ExecuteReader();
 
@@ -73,7 +73,7 @@ namespace OfferSphere.Data
 
             dbConnection.Close();
 
-            if( customer != null )
+            if( customer == null )
                 throw new Exception("Customer with the specified ID does not exist.");
 
             return customer;

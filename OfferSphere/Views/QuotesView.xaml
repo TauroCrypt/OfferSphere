@@ -3,11 +3,186 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OfferSphere.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Quotes View" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid Background="#F5F6FA" Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <DockPanel Margin="0,0,0,15">
+            <TextBlock Text="Quotes"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#2F3640"
+                       DockPanel.Dock="Left"/>
+
+            <Button Content="New Quote"
+                    Command="{Binding CreateQuoteCommand}"
+                    Width="140"
+                    Height="36"
+                    Background="#4078F2"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Right"/>
+        </DockPanel>
+
+        <!-- FILTER / SEARCH -->
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search -->
+            <StackPanel>
+                <TextBlock Text="Search quote or customer"
+                           FontSize="12"
+                           Foreground="Gray"/>
+                <TextBox Height="30"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <!-- Status Filter -->
+            <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                <TextBlock Text="Status"
+                           FontSize="12"
+                           Foreground="Gray"/>
+                <ComboBox Height="30"
+                          ItemsSource="{Binding QuoteStatusFilter}"
+                          SelectedItem="{Binding SelectedStatus}"
+                          DisplayMemberPath="Label"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- QUOTE LIST -->
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="12"
+                Padding="10">
+
+            <ListBox ItemsSource="{Binding Quotes}"
+                     SelectedItem="{Binding SelectedQuote}"
+                     BorderThickness="0">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border Background="#F8F9FC"
+                Padding="14"
+                CornerRadius="10">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition Width="180"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Customer -->
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Customer"
+                                               FontSize="11"
+                                               Foreground="Gray"/>
+                                    <TextBlock Text="{Binding CompanyName}"
+                                               FontWeight="SemiBold"
+                                               TextTrimming="CharacterEllipsis"/>
+                                </StackPanel>
+
+                                <!-- Date (without time) -->
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Date"
+                                               FontSize="11"
+                                               Foreground="Gray"/>
+                                    <TextBlock Text="{Binding QuoteDate, StringFormat={}{0:dd.MM.yyyy}}"/>
+                                </StackPanel>
+
+                                <!-- Amount -->
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Amount"
+                                               FontSize="11"
+                                               Foreground="Gray"/>
+                                    <TextBlock Text="{Binding TotalAmount, StringFormat={}{0:C}}"
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+
+                                <!-- Status -->
+                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                    <Border Background="#E5E7EB"
+                                            Padding="8,4"
+                                            CornerRadius="6"
+                                            HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding StatusLabel}"
+                                            FontSize="12"
+                                            FontWeight="SemiBold"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <!-- Actions -->
+                                <StackPanel Grid.Column="4"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center">
+
+                                    <!-- Open -->
+                                    <Button Command="{Binding DataContext.OpenQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32" Height="32"
+                                            Margin="4,0">
+                                        <Image Source="/OfferSphere;component/Resources/open.png"/>
+                                    </Button>
+
+                                    <!-- Send -->
+                                    <Button Command="{Binding DataContext.SendQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32" Height="32"
+                                            Margin="4,0">
+                                        <Image Source="/OfferSphere;component/Resources/send.png"/>
+                                    </Button>
+
+                                    <!-- Edit -->
+                                    <Button Command="{Binding DataContext.EditQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32" Height="32"
+                                            Margin="4,0">
+                                        <Image Source="/OfferSphere;component/Resources/edit_icon.png"/>
+                                    </Button>
+
+                                    <!-- Delete -->
+                                    <Button Command="{Binding DataContext.DeleteQuoteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Width="32" Height="32"
+                                            Margin="4,0">
+                                        <Image Source="/OfferSphere;component/Resources/delete_icon.png"/>
+                                    </Button>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+        </Border>
         <Frame Name="QuoteFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>

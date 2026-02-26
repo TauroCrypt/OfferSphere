@@ -13,6 +13,7 @@ namespace OfferSphere.Models
         public int LineNumber { get; set; }
         public decimal UnitPrice { get; set; }
 
+        public QuoteLine() { }
         public QuoteLine(int quoteItemID, int quoteID, int serviceID, int quantity, int lineNumber, decimal unitPrice)
         {
             QuoteItemID = quoteItemID;

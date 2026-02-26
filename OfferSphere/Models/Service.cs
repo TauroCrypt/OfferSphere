@@ -12,6 +12,7 @@ namespace OfferSphere.Models
         public int CategoryCode { get; private set; }
         public decimal CurrentPrice { get; private set; }
 
+        public Service() { }
         public Service(int serviceID, string serviceName, string description, int categoryCode, decimal currentPrice)
         {
             ServiceID = serviceID;

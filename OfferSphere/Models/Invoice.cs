@@ -13,6 +13,7 @@ namespace OfferSphere.Models
         public int TermCode { get; private set; }
         public int StatusCode { get; private set; }
 
+        public Invoice() { }
         public Invoice(int invoiceID, int quoteID, string invoiceNumber, DateTime invoiceDate, int termCode, int statusCode)
         {
             InvoiceID = invoiceID;

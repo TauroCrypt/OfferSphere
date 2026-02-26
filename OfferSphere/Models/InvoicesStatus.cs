@@ -9,6 +9,7 @@ namespace OfferSphere.Models
         public int StatusCode { get; set; }
         public string Label { get; set; }
 
+        public InvoicesStatus() { }
         public InvoicesStatus(int statusCode, string label)
         {
             StatusCode = statusCode;

@@ -12,6 +12,7 @@ namespace OfferSphere.Models
         public string PostalCode { get; private set; }
         public string City { get; private set; }
 
+        public Customer() { }
         public Customer(int customerID, string companyName, string street, string postalCode, string city)
         {
             CustomerID = customerID;
